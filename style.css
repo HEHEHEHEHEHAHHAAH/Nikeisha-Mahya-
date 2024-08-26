@@ -1,0 +1,126 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fffbcc;
+    margin: 0;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.envelope {
+    position: relative;
+    width: 320px;
+    height: 180px;
+    background-color: #ffcccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    perspective: 1000px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.envelope:hover {
+    transform: scale(1.1);
+}
+
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: #ff9999;
+    transform-origin: top;
+    transform: rotateX(0);
+    transition: transform 0.6s ease-in-out;
+    border-radius: 20px 20px 0 0;
+    z-index: 2;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flap.open {
+    transform: rotateX(-180deg);
+}
+
+.stamp {
+    width: 40px;
+    height: 40px;
+    background-color: #ffe066;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.stamp::before, .stamp::after {
+    content: '';
+    position: absolute;
+    background-color: #ffd700;
+    border-radius: 50%;
+}
+
+.stamp::before {
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    left: 10px;
+}
+
+.stamp::after {
+    width: 10px;
+    height: 10px;
+    top: 15px;
+    left: 15px;
+}
+
+.letter {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 0 0 20px 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    transform: rotateX(-180deg);
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+.letter.show {
+    transform: rotateX(0);
+    opacity: 1;
+    animation: bounceIn 0.6s ease;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.letter h2 {
+    margin: 0;
+    color: #ff6f91;
+}
+
+.letter p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.letter p:last-child {
+    margin-top: 20px;
+}
